@@ -1,0 +1,6 @@
+﻿pack.name=CYBOX DEV Lm-1 : RP
+pack.description=Test Only, Not for Sale.
+
+action.hint.exit.car:basic=Basic Car
+entity.car:basic.name=Touch the 'SpeedUp!' button or Right-click to Speed up
+item.spawn_egg.entity.car:basic.name=Spawn Basic Car

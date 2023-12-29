@@ -1,0 +1,6 @@
+﻿pack.name=CYBOX DEV Lm-1 : 리소스팩
+pack.description=내부테스트 전용, 외부유출금지
+
+action.hint.exit.car:basic=Basic Car
+entity.car:basic.name='SpeedUp!' 버튼 터치 또는 마우스 우클릭으로 속도 번경
+item.spawn_egg.entity.car:basic.name=Basic Car 생성

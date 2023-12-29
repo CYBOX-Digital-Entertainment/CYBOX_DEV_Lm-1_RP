@@ -1,0 +1,81 @@
+//bridge-file-version: #130
+{
+	"format_version": "1.10.0",
+	"minecraft:client_entity": {
+		"description": {
+			"identifier": "car:basic",
+			"materials": {
+				"default": "entity_emissive_alpha",
+				"basic_windows": "entity_alphablend"
+			},
+			"textures": {
+				"default": "textures/entity/basic/basic",
+				"basic_windows": "textures/entity/basic/basic"
+			},
+			"geometry": {
+				"default": "geometry.basic",
+				"basic_windows": "geometry.basic_windows"
+			},
+			"render_controllers": [
+				"controller.render.default",
+				"controller.render.basic_windows"
+				
+			],
+			"spawn_egg": {
+				"texture": "basic_egg"
+			},
+			"animations": {
+				"move": "animation.basic.move",
+				"pedal": "animation.basic.pedal",
+				"turn": "animation.basic.turn",
+				"setup": "animation.basic.spawn",
+				"speed0": "animation.basic.speed0",
+				"speed1": "animation.basic.speed1",
+				"speed2": "animation.basic.speed2",
+				"speed3": "animation.basic.speed3",
+				"speed4": "animation.basic.speed4",
+				"light_on": "animation.basic.back_mirror_open",
+				"light_off": "animation.basic.back_mirror_close",
+				"key": "animation.basic.key"
+			},
+			"scripts": {
+				"animate": [
+					{
+						"move": "query.modified_move_speed"
+					},
+					{
+						"pedal": "query.modified_move_speed"
+					},
+					{
+						"turn": "query.modified_move_speed"
+					},
+					{
+						"speed0": "query.skin_id == 0 && query.is_moving == 1"
+					},
+					{
+						"speed1": "query.skin_id == 1 && query.is_moving == 1"
+					},
+					{
+						"speed2": "query.skin_id == 2 && query.is_moving == 1"
+					},
+					{
+						"speed3": "query.skin_id == 3 && query.is_moving == 1"
+					},
+					{
+						"speed4": "query.skin_id == 4 && query.is_moving == 1"
+					},
+					{
+						"light_on": "query.has_rider == 1"
+					},
+					{
+						"key": "query.has_rider == 1"
+					},
+					{
+						"light_off": "query.has_rider == 0"
+					},
+					"setup"
+				]
+			}
+		}
+	}
+}
