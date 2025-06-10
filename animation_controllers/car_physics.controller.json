@@ -1,16 +1,23 @@
 {
-  "format_version": "1.10.0",
+  "format_version": "1.17.30",
   "animation_controllers": {
     "controller.animation.car_physics": {
       "initial_state": "default",
       "states": {
         "default": {
           "animations": [
-            "wheel_rotation",
-            "steering_rotation"
+            "car_wheels"
           ],
           "transitions": [
-            // 추가 상태 전환 필요시 구현
+            { "moving": "query.ground_speed > 0.01" }
+          ]
+        },
+        "moving": {
+          "animations": [
+            { "car_wheels": "query.ground_speed * 2.5" }
+          ],
+          "transitions": [
+            { "default": "query.ground_speed <= 0.01" }
           ]
         }
       }

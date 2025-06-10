@@ -1,6 +1,33 @@
 {
 	"format_version": "1.8.0",
 	"animations": {
+  "animation.car.wheel_rotation": {
+      "loop": true,
+      "bones": {
+        "A": {
+          "rotation": ["0", "Math.sin(query.ground_speed * 57.3)", "0"]
+        },
+        "B": {
+          "rotation": ["0", "Math.sin(query.ground_speed * 57.3)", "0"]
+        },
+        "C": {
+          "rotation": ["0", "Math.sin(query.ground_speed * 57.3)", "0"]
+        },
+        "D": {
+          "rotation": ["0", "Math.sin(query.ground_speed * 57.3)", "0"]
+        },
+        "steering_wheel": {
+          "rotation": ["0", "0", "variable.steering_angle * 30"]
+        }
+      }
+    },
+  "animation.car.steering_rotation": {
+    "loop": true,
+    "bones": {
+      "steering_wheel": { "rotation": [0, 0, "variable.steering_angle * 30"] }
+    }
+  },
+
 		"animation.basic.spawn": {
 			"loop": "hold_on_last_frame",
 			"animation_length": 0.46667,
