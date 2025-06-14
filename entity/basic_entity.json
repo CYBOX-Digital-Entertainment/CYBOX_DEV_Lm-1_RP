@@ -36,7 +36,7 @@
   "variable.previous_rotation = variable.current_rotation ?? 0;",
   "variable.current_rotation = query.property('cybox:psybox') == 0 ? Math.clamp(variable.slope_factor * -20, -25, 25) : Math.clamp(variable.slope_factor * 20, -25, 25);",
   "variable.slope_factor = Math.clamp(query.vertical_speed * 1.5, -1.0, 1.0);"
-]
+],
         "animate": [
           "vehicle_slope",
 		  "spawn",
