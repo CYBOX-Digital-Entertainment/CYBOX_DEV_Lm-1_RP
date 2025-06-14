@@ -1,0 +1,57 @@
+{
+  "format_version": "1.21.80",
+  "animation_controllers": {
+    "controller.animation.vehicle_slope": {
+      "initial_state": "flat_ground",
+      "states": {
+        "flat_ground": {
+          "animations": [
+            "turn",
+            "move",
+            "pedal"
+          ],
+          "transitions": [
+            {
+              "uphill": "query.vertical_speed > 0.1"
+            },
+            {
+              "downhill": "query.vertical_speed < -0.1"
+            }
+          ]
+        },
+        "uphill": {
+          "animations": [
+            "turn",
+            "move", 
+            "pedal",
+            { "slope_tilt": "Math.clamp(query.vertical_speed * 2.5, 0.1, 1.0)" }
+          ],
+          "transitions": [
+            {
+              "flat_ground": "Math.abs(query.vertical_speed) <= 0.1"
+            },
+            {
+              "downhill": "query.vertical_speed < -0.1"
+            }
+          ]
+        },
+        "downhill": {
+          "animations": [
+            "turn",
+            "move",
+            "pedal", 
+            { "slope_tilt": "Math.clamp(query.vertical_speed * -2.5, -1.0, -0.1)" }
+          ],
+          "transitions": [
+            {
+              "flat_ground": "Math.abs(query.vertical_speed) <= 0.1"
+            },
+            {
+              "uphill": "query.vertical_speed > 0.1"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

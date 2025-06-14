@@ -1,0 +1,45 @@
+{
+  "format_version": "1.21.80",
+  "animations": {
+    "animation.basic.slope_tilt": {
+      "loop": true,
+      "bones": {
+        "chassis": {
+          "rotation": [
+            "Math.cos(query.modified_distance_moved * 3.14159) * variable.slope_factor * 25",
+            0,
+            0
+          ]
+        },
+        "A": {
+          "rotation": [
+            0,
+            "Math.sin((query.ground_speed + Math.abs(variable.slope_factor * 0.5)) * 57.3)",
+            0
+          ]
+        },
+        "B": {
+          "rotation": [
+            0,
+            "Math.sin((query.ground_speed + Math.abs(variable.slope_factor * 0.5)) * 57.3)",
+            0
+          ]
+        },
+        "C": {
+          "rotation": [
+            0,
+            "Math.sin((query.ground_speed + Math.abs(variable.slope_factor * 0.5)) * 57.3)",
+            0
+          ]
+        },
+        "D": {
+          "rotation": [
+            0,
+            "Math.sin((query.ground_speed + Math.abs(variable.slope_factor * 0.5)) * 57.3)",
+            0
+          ]
+        }
+      }
+    }
+  }
+}
