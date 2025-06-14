@@ -1,5 +1,5 @@
 {
-  "format_version": "1.21.80",
+  "format_version": "1.17.30",
   "minecraft:client_entity": {
     "description": {
       "identifier": "car:basic",
@@ -19,24 +19,30 @@
         "texture": "basic_egg"
       },
       "animations": {
-	  "spawn": "animation.basic.spawn",
-	  "turn": "animation.basic.turn",
+		"spawn": "animation.basic.spawn",
+        "turn": "animation.basic.turn",
         "move": "animation.basic.move",
         "pedal": "animation.basic.pedal",
         "slope_tilt": "animation.basic.slope_tilt",
         "vehicle_slope": "controller.animation.vehicle_slope"
       },
       "scripts": {
-        "variables": {
-          "variable.steering_angle": "public",
-          "variable.slope_factor": "public"
+		  "variables": {
+          "variable.previous_rotation": "public",
+		  "variable.slope_factor": "public",
+		  "variable.current_rotation": "public"
         },
-        "pre_animation": [
-          "variable.steering_angle = query.body_y_rotation - query.head_y_rotation(0);",
-          "variable.slope_factor = Math.clamp(query.vertical_speed * 2.5, -1.0, 1.0);"
-        ],
+"pre_animation": [
+  "variable.previous_rotation = variable.current_rotation ?? 0;",
+  "variable.slope_factor = Math.clamp(query.vertical_speed * Math.sign(query.ground_speed) * 1.5, -1.0, 1.0);",
+"variable.current_rotation = Math.clamp(variable.slope_factor * -20, -25, 25);"
+],
         "animate": [
-          "vehicle_slope"
+          "vehicle_slope",
+		  "spawn",
+		  "turn",
+		  "move",
+		  "pedal"
         ]
       },
       "render_controllers": [
