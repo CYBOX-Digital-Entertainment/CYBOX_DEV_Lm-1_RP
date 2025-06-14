@@ -9,7 +9,7 @@
       },
       "textures": {
         "default": "textures/entity/basic/basic",
-        "basic_windows": "textures/entity/basic/basic" // 텍스처 이름 수정
+        "basic_windows": "textures/entity/basic/basic"
       },
       "geometry": {
         "default": "geometry.basic",
@@ -19,30 +19,20 @@
         "texture": "basic_egg"
       },
       "animations": {
-        "car_wheels": "animation.car.wheel_rotation",
-        "steering_rotation": "animation.car.steering_rotation",
         "move": "animation.basic.move",
         "pedal": "animation.basic.pedal",
-        "turn": "animation.basic.turn",
-        "car_physics": "controller.animation.car_physics" // 컨트롤러명 수정
+        "turn": "animation.basic.turn"
       },
       "scripts": {
-        "variables": {
-          "variable.steering_angle": "public"
-        },
-        "pre_animation": [
-          "variable.steering_angle = query.body_y_rotation - query.head_y_rotation;" // 세미콜론 제거
-        ],
         "animate": [
           { "move": "query.modified_move_speed" },
           { "pedal": "query.modified_move_speed" },
-          { "turn": "query.modified_move_speed" },
-          "car_physics" // 객체에서 문자열로 변경
+          { "turn": "query.modified_move_speed" }
         ]
       },
       "render_controllers": [
         "controller.render.default",
-        "controller.render.basic_windows" // 쉼표 제거
+        "controller.render.basic_windows"
       ]
     }
   }
