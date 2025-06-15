@@ -27,22 +27,20 @@
 				}
 			}
 		},
-"animation.basic.slope_tilt": {
-  "loop": true,
-  "anim_time_update": "query.anim_time + query.delta_time * (1.0 + Math.abs(variable.slope_factor) * 2.0)",
-  "bones": {
-    "root": {
-"rotation": [
-  "Math.lerp(variable.previous_rotation??0, variable.current_rotation, Math.min(1.0, query.delta_time*3.0))",
-  0,
-  0
-]
-
-
-
-    }
-  }
-},
+    "animation.basic.slope_tilt": {
+      "loop": true,
+      "animation_length": 1.0,
+      "anim_time_update": "query.anim_time + query.delta_time * math.max(0.1, math.abs(variable.slope_intensity) * 1.5)",
+      "bones": {
+        "root": {
+          "rotation": [
+            "math.lerp(variable.previous_rotation, variable.current_rotation, math.min(1.0, query.delta_time * 4.0))",
+            0.0,
+            0.0
+          ]
+        }
+      }
+    },
 
 
 

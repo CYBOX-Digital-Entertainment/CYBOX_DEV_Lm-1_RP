@@ -28,14 +28,21 @@
       },
       "scripts": {
 		  "variables": {
-          "variable.previous_rotation": "public",
-		  "variable.slope_factor": "public",
-		  "variable.current_rotation": "public"
-        },
+  "variable.previous_rotation": "public",
+  "variable.target_rotation": "public",
+  "variable.current_rotation": "public",
+  "variable.slope_intensity": "public",
+  "variable.is_forward": "public",
+  "variable.slope_state": "public"
+},
+
 "pre_animation": [
-  "variable.previous_rotation = variable.current_rotation ?? 0;",
-  "variable.slope_factor = Math.clamp(query.vertical_speed * 1.5, -1.0, 1.0);",
-  "variable.current_rotation = query.property('cybox:psybox') == 0 ? Math.clamp(variable.slope_factor * -20, -25, 25) : Math.clamp(variable.slope_factor * 20, -25, -25);"
+  "variable.previous_rotation = variable.current_rotation ?? 0.0;",
+  "variable.is_forward = query.property('cybox:phy_baf') == 0;",
+  "variable.slope_state = query.property('cybox:phy_brafr');",
+  "variable.slope_intensity = variable.slope_state == 0 ? 0.0 : (variable.slope_state == 1 ? 1.0 : -1.0);",
+  "variable.target_rotation = variable.slope_state == 0 ? 0.0 : (variable.is_forward ? (variable.slope_intensity * math.random(24.75, 45.0)) : (variable.slope_intensity * -math.random(24.75, 45.0)));",
+  "variable.current_rotation = math.clamp(variable.target_rotation, -45.0, 45.0);"
 ],
 
         "animate": [
