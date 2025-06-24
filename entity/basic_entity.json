@@ -1,62 +1,58 @@
 {
-  "format_version": "1.17.30",
-  "minecraft:client_entity": {
-    "description": {
-      "identifier": "car:basic",
-      "materials": {
-        "default": "entity_emissive_alpha",
-        "basic_windows": "entity_alphablend"
-      },
-      "textures": {
-        "default": "textures/entity/basic/basic",
-        "basic_windows": "textures/entity/basic/basic"
-      },
-      "geometry": {
-        "default": "geometry.basic",
-        "basic_windows": "geometry.basic_windows"
-      },
-      "spawn_egg": {
-        "texture": "basic_egg"
-      },
-      "animations": {
-		"spawn": "animation.basic.spawn",
-        "turn": "animation.basic.turn",
-        "move": "animation.basic.move",
-        "pedal": "animation.basic.pedal",
-        "slope_tilt": "animation.basic.slope_tilt",
-        "vehicle_slope": "controller.animation.vehicle_slope"
-      },
-      "scripts": {
-		  "variables": {
-  "variable.previous_rotation": "public",
-  "variable.target_rotation": "public",
-  "variable.current_rotation": "public",
-  "variable.slope_intensity": "public",
-  "variable.is_forward": "public",
-  "variable.slope_state": "public"
-},
-
-"pre_animation": [
-  "variable.previous_rotation = variable.current_rotation ?? 0.0;",
-  "variable.is_forward = query.property('cybox:phy_baf') == 0;",
-  "variable.slope_state = query.property('cybox:phy_brafr');",
-  "variable.slope_intensity = variable.slope_state == 0 ? 0.0 : (variable.slope_state == 1 ? 1.0 : -1.0);",
-  "variable.target_rotation = variable.slope_state == 0 ? 0.0 : (variable.is_forward ? (variable.slope_intensity * math.random(24.75, 45.0)) : (variable.slope_intensity * -math.random(24.75, 45.0)));",
-  "variable.current_rotation = math.clamp(variable.target_rotation, -45.0, 45.0);"
-],
-
-        "animate": [
-          "vehicle_slope",
-		  "spawn",
-		  "turn",
-		  "move",
-		  "pedal"
-        ]
-      },
-      "render_controllers": [
-        "controller.render.default",
-        "controller.render.basic_windows"
-      ]
+    "format_version": "1.17.30",
+    "minecraft:client_entity": {
+        "description": {
+            "identifier": "car:basic",
+            "materials": {
+                "default": "entity_emissive_alpha",
+                "basic_windows": "entity_alphablend"
+            },
+            "textures": {
+                "default": "textures/entity/basic/basic"
+            },
+            "properties": {},
+            "geometry": {
+                "default": "geometry.basic",
+                "basic_windows": "geometry.basic_windows"
+            },
+            "spawn_egg": {
+                "texture": "basic_egg"
+            },
+            "animations": {
+                "spawn": "animation.basic.spawn",
+                "turn": "animation.basic.turn",
+                "move": "animation.basic.move",
+                "pedal": "animation.basic.pedal",
+                "slope_tilt": "animation.basic.slope_tilt",
+                "vehicle_slope": "controller.animation.vehicle_slope"
+            },
+            "scripts": {
+                "variables": {
+                    "variable.previous_rotation": "public",
+                    "variable.target_rotation": "public",
+                    "variable.current_rotation": "public"
+                },
+                "pre_animation": [
+                    "variable.previous_rotation = variable.current_rotation ?? 0.0;",
+                    "variable.target_rotation = 0.0;",
+                    "variable.tilt_angle = 35.0;",
+                    "variable.tilt_state = query.property('cybox:car_tilt_state');",
+                    "variable.is_moving = query.property('cybox:is_moving');",
+                    "variable.target_rotation = (variable.tilt_state == 1 ? variable.tilt_angle : (variable.tilt_state == 2 ? -variable.tilt_angle : (variable.tilt_state == 3 ? -variable.tilt_angle : (variable.tilt_state == 4 ? variable.tilt_angle : 0.0))));",
+                    "variable.current_rotation = math.clamp(variable.target_rotation, -45.0, 45.0);"
+                ],
+                "animate": [
+                    "vehicle_slope",
+                    "spawn",
+                    "turn",
+                    "move",
+                    "pedal"
+                ]
+            },
+            "render_controllers": [
+                "controller.render.default",
+                "controller.render.basic_windows"
+            ]
+        }
     }
-  }
 }

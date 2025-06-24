@@ -1,22 +1,26 @@
 {
-  "format_version": "1.17.30",
+  "format_version": "1.10.0",
   "animation_controllers": {
     "controller.animation.vehicle_slope": {
       "initial_state": "default",
       "states": {
         "default": {
-          "animations": ["slope_tilt"],
+          "animations": [
+            "slope_tilt"
+          ],
           "transitions": [
             {
-              "slope_active": "query.property('cybox:phy_brafr') != 0"
+              "slope_active": "query.property('cybox:car_tilt_state') != 0"
             }
           ]
         },
         "slope_active": {
-          "animations": ["slope_tilt"],
+          "animations": [
+            "slope_tilt"
+          ],
           "transitions": [
             {
-              "default": "query.property('cybox:phy_brafr') == 0"
+              "default": "query.property('cybox:car_tilt_state') == 0"
             }
           ],
           "blend_transition": 0.2
